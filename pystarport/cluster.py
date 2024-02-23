@@ -333,13 +333,12 @@ class ClusterCLI:
         return self.cosmos_cli(i).add_genesis_account(addr, coins, **kwargs)
 
     def gentx(
-        self, name, coins, *args, i=0, min_self_delegation=1, pubkey=None, **kwargs
+        self, name, coins, *args, i=0, pubkey=None, **kwargs
     ):
         return self.cosmos_cli(i).gentx(
             name,
             coins,
             *args,
-            min_self_delegation=min_self_delegation,
             pubkey=pubkey,
             **kwargs,
         )
@@ -515,7 +514,6 @@ class ClusterCLI:
         commission_max_change_rate="0.01",
         commission_rate="0.1",
         commission_max_rate="0.2",
-        min_self_delegation="1",
         identity="",
         website="",
         security_contact="",
@@ -530,7 +528,6 @@ class ClusterCLI:
             commission_max_change_rate,
             commission_rate,
             commission_max_rate,
-            min_self_delegation,
             identity,
             website,
             security_contact,
@@ -896,7 +893,6 @@ def init_devnet(
                 node["staked"],
                 config.get("cmd-flags"),
                 i=i,
-                min_self_delegation=node.get("min_self_delegation", 1),
                 pubkey=node.get("pubkey"),
                 **extra_kwargs,
             )

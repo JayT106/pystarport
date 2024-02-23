@@ -165,13 +165,12 @@ class CosmosCLI:
             **kwargs,
         )
 
-    def gentx(self, name, coins, *args, min_self_delegation=1, pubkey=None, **kwargs):
+    def gentx(self, name, coins, *args, pubkey=None, **kwargs):
         return self.raw(
             "gentx",
             name,
             coins,
             *args,
-            min_self_delegation=str(min_self_delegation),
             home=self.data_dir,
             chain_id=self.chain_id,
             keyring_backend="test",
@@ -641,7 +640,6 @@ class CosmosCLI:
         commission_max_change_rate="0.01",
         commission_rate="0.1",
         commission_max_rate="0.2",
-        min_self_delegation="1",
         identity="",
         website="",
         security_contact="",
@@ -672,7 +670,6 @@ class CosmosCLI:
                 from_=self.address("validator"),
                 amount=amount,
                 pubkey=pubkey,
-                min_self_delegation=min_self_delegation,
                 # commision
                 commission_rate=commission_rate,
                 commission_max_rate=commission_max_rate,
